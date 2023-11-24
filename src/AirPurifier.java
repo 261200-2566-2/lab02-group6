@@ -1,8 +1,8 @@
 // 1.
 // 1.1) instance variables: brand, model, color, dimension, power, bluetooth, dust, mode
 // 1.2) instance methods: turnOn, turnOff, setMode, connectBT
-// 1.3) class variables: count, brand...Count, model...Count ,color...Count,
-// 1.4) class methods: getAmountOfAP, popModel, popColor, popBrand
+// 1.3) class variables: count, airPurifierList
+// 1.4) class methods: getTotalCount, getAirPurifierList
 
 // 2.
 // 2.1) instance methods
@@ -10,8 +10,8 @@
 // - setMode: รับ int ไม่ return ค่า
 // - connectBt: รับ boolean ไม่ return ค่า
 // 2.2) class methods
-// - getAmountOfAP: ไม่มี input return int
-// - popModel, popColor, popBrand: รับ String return String
+// - getTotalCount: ไม่มี input return count(int)
+// - getAirPurifierList: ไม่มี input, return airPurifierList(String[])
 
 // 3.
 public class AirPurifier {
@@ -23,16 +23,28 @@ public class AirPurifier {
     boolean bluetooth = false;
     int dust;
     int mode;
+    static int count;
+    static String[] airPurifierList = new String[100];
 
     public AirPurifier(String brand, String model, double[] dimension,String color){
         this.brand = brand;
         this.model = model;
         this.dimension = dimension;
         this.color = color;
+        airPurifierList[count] = this.brand + " " + this.model + " (" + this.dimension[0] + "x" + this.dimension[1] + "x" + this.dimension[2] + ", " + this.color + ")";
+        count++;
     }
 
     public AirPurifier(){
         this("Xiaomi", "4 Lite", new double[]{250,250,540},"white");
+    }
+
+    public static int getTotalCount() {
+        return count;
+    }
+
+    public static String[] getAirPurifierList(){
+        return airPurifierList;
     }
 
     public void turnOn(){
