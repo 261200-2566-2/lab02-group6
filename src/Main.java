@@ -16,5 +16,11 @@ public class Main {
         System.out.println(a.mode);
         System.out.println(a.dust);
         System.out.println(a.bluetooth);
+        System.out.println(AirPurifier.getTotalCount());
+        String[] list = AirPurifier.getAirPurifierList();
+        for(int i = 0; i < AirPurifier.getTotalCount(); i++){
+            System.out.println((i+1) + ". " + list[i]);
+        }
+
     }
 }
