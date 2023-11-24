@@ -1,69 +1,61 @@
+// 1.
+// 1.1) instance variables: brand, model, color, dimension, power, bluetooth, dust, mode
+// 1.2) instance methods: turnOn, turnOff, setMode, connectBT
+// 1.3) class variables: count, brand...Count, model...Count ,color...Count,
+// 1.4) class methods: getAmountOfAP, popModel, popColor, popBrand
+
+// 2.
+// 2.1) instance methods
+// - turnOn, turnOff: ไม่มี input ไม่ return ค่า
+// - setMode: รับ int ไม่ return ค่า
+// - connectBt: รับ boolean ไม่ return ค่า
+// 2.2) class methods
+// - getAmountOfAP: ไม่มี input return int
+// - popModel, popColor, popBrand: รับ String return String
+
+// 3.
 public class AirPurifier {
-    private String model;
-    private double powerCon;
-    private final String color;
-    private double price;
-    private double[] dimension;
-    private boolean power = false;
-    private boolean bluetooth = false;
-    private boolean availability = true;
-    public AirPurifier(double price, String color){ // รับ offered price, สี
+    String brand;
+    String model;
+    String color;
+    double[] dimension;
+    boolean power = false;
+    boolean bluetooth = false;
+    int dust;
+    int mode;
+
+    public AirPurifier(String brand, String model, double[] dimension,String color){
+        this.brand = brand;
+        this.model = model;
+        this.dimension = dimension;
         this.color = color;
-        if(price < 1000){ // ถ้าเสนอราคาต่ำกว่า 1000 ถือว่า AirPurifier นั้นไม่สมบูรณ์ (ดู spec, เรียกใช้ method ต่าง ๆ ไม่ได้)
-            availability = false;
-        }else if(price < 3000){
-            this.model = "Model A";
-            this.price = 1000;
-            this.dimension = new double[]{240,240,533.5};
-            this.powerCon = 0.8;
-        }else if(price < 5000){
-            this.model = "Model B";
-            this.price = 3000;
-            this.dimension = new double[]{250,250,555};
-            this.powerCon = 1;
-        }else{
-            this.model = "Model C";
-            this.price = 5000;
-            this.dimension = new double[]{275,275,680};
-            this.powerCon = 1.2;
-        }
     }
 
-    public void turnOn() {
-        if(availability){
-            power = true;
-            System.out.println("Your air purifier is turned on.");
-        } else System.out.println("The method is unavailable.");
+    public AirPurifier(){
+        this("Xiaomi", "4 Lite", new double[]{250,250,540},"white");
     }
 
-    public void turnOff() {
-        if(availability){
-            power = false;
-            System.out.println("Your air purifier is turned off.");
-        }else  System.out.println("The method is unavailable.");
+    public void turnOn(){
+        power = true;
+        mode = 1;
+        int min = 0, max = 100;
+        dust = (int) (Math.random()*(max-min+1)+min);
     }
 
-    public void connectBT() {
-        if(availability){
-            bluetooth = true;
-            System.out.println("The Bluetooth is connected.");
-        }else  System.out.println("The method is unavailable.");
+    public void turnOff(){
+        power = false;
+        mode = 0;
+        dust = 0;
+        bluetooth = false;
     }
 
-    public void disconnectBT() {
-        if(availability){
-            bluetooth = false;
-            System.out.println("The Bluetooth is disconnected.");
-        }else  System.out.println("The method is unavailable.");
+    public void setMode(int fs) {
+        if (fs <= 1) mode = 1;
+        else if (fs >= 5) mode = 5;
+        else mode = fs;
     }
 
-    public void showInfo() {
-        if(availability){
-            System.out.println("Model: " + model);
-            System.out.println("Price: " + price + "Baht");
-            System.out.println("Color: " + color);
-            System.out.println("Dimension: " + dimension[0] + " x " + dimension[1] + " x " + dimension[2] + " mm");
-            System.out.println("Power Consumption: " + powerCon + " kWh");
-        }else System.out.println("The air purifier is unavailable.");
+    public void connectBT(boolean b){
+        bluetooth = b;
     }
 }
