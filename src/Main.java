@@ -1,4 +1,4 @@
-public class Lab02 {
+public class Main {
     public static void main(String[] args) {
         AirPurifier a = new AirPurifier("Xiaomi","Pro",new double[]{300,300,689},"red");
         AirPurifier b = new AirPurifier();
